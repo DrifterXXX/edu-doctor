@@ -1,0 +1,501 @@
+     1|<!DOCTYPE html>
+     2|<html lang="zh-CN">
+     3|<head>
+     4|<meta charset="UTF-8">
+     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6|<title>教育博士备考中心 · 考前背诵</title>
+     7|<style>/* ===== Exam Template - Universal CSS ===== */
+     8|/* 适用于所有备考站点：N1/期货/博士 */
+     9|
+    10|:root {
+    11|  --bg: #f0f2f5;
+    12|  --card-bg: #fff;
+    13|  --text: #333;
+    14|  --text-light: #888;
+    15|  --text-lighter: #aaa;
+    16|  --border: #e8e8e8;
+    17|  --hover: #f8f9fa;
+    18|  --shadow: rgba(0,0,0,0.08);
+    19|  --shadow-hover: rgba(0,0,0,0.12);
+    20|  --tag-bg: #f0f2f5;
+    21|  --tag-text: #666;
+    22|  --primary: #e74c3c;
+    23|  --primary-light: #fde8e8;
+    24|  --success: #2ecc71;
+    25|  --success-bg: #e8f8f0;
+    26|  --wrong: #e74c3c;
+    27|  --wrong-bg: #fde8e8;
+    28|  --header-from: #1a1a2e;
+    29|  --header-mid: #16213e;
+    30|  --header-to: #0f3460;
+    31|  --header-text: #f1f5f9;
+    32|  --header-sub: #aab8c2;
+    33|  --back-top-bg: #1a1a2e;
+    34|}
+    35|
+    36|body.dark {
+    37|  --bg: #12122a;
+    38|  --card-bg: #1e1e3a;
+    39|  --text: #d0d0e0;
+    40|  --text-light: #999;
+    41|  --text-lighter: #777;
+    42|  --border: #2a2a4a;
+    43|  --hover: #252545;
+    44|  --shadow: rgba(0,0,0,0.3);
+    45|  --shadow-hover: rgba(0,0,0,0.4);
+    46|  --tag-bg: #2a2a4a;
+    47|  --tag-text: #aaa;
+    48|  --primary: #e74c3c;
+    49|  --primary-light: #2a1a1a;
+    50|  --success: #27ae60;
+    51|  --success-bg: #1a2e22;
+    52|  --wrong: #e74c3c;
+    53|  --wrong-bg: #2a1a1a;
+    54|  --back-top-bg: #0f3460;
+    55|}
+    56|
+    57|* { margin: 0; padding: 0; box-sizing: border-box; }
+    58|body {
+    59|  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+    60|  background: var(--bg);
+    61|  color: var(--text);
+    62|  transition: background 0.3s, color 0.3s;
+    63|  line-height: 1.6;
+    64|}
+    65|
+    66|/* ===== Header ===== */
+    67|.header {
+    68|  background: linear-gradient(135deg, var(--header-from), var(--header-mid), var(--header-to));
+    69|  color: var(--header-text);
+    70|  padding: 40px 20px;
+    71|  text-align: center;
+    72|  position: relative;
+    73|}
+    74|.header h1 { font-size: 1.8em; margin-bottom: 10px; }
+    75|.header p { color: var(--header-sub); font-size: 1em; margin-bottom: 8px; }
+    76|.header .subtitle { font-size: 0.9em; color: #7b8fa1; }
+    77|
+    78|/* ===== Theme Button ===== */
+    79|.theme-btn {
+    80|  position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+    81|  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.25);
+    82|  color: rgba(255,255,255,.7); font-size: 1em; padding: 6px 12px;
+    83|  border-radius: 8px; cursor: pointer; transition: all 0.2s;
+    84|}
+    85|.theme-btn:hover { color: #fff; background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.4); }
+    86|
+    87|/* ===== Back Link ===== */
+    88|.back-link {
+    89|  position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+    90|  color: rgba(255,255,255,.6); text-decoration: none; font-size: 14px;
+    91|  padding: 6px 12px; border: 1px solid rgba(255,255,255,.2);
+    92|  border-radius: 8px; transition: all 0.2s;
+    93|}
+    94|.back-link:hover { color: #fff; background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.4); }
+    95|
+    96|/* ===== Container ===== */
+    97|.container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
+    98|
+    99|/* ===== Entry Cards (Index) ===== */
+   100|.entries { display: flex; flex-direction: column; gap: 20px; }
+   101|.entry {
+   102|  background: var(--card-bg); border-radius: 16px; padding: 30px;
+   103|  text-align: center; box-shadow: 0 4px 16px var(--shadow);
+   104|  transition: all 0.3s; border: 2px solid transparent;
+   105|  cursor: pointer; text-decoration: none; color: var(--text);
+   106|}
+   107|.entry:hover { transform: translateY(-4px); box-shadow: 0 8px 32px var(--shadow-hover); border-color: var(--primary); }
+   108|.entry .icon { font-size: 2.5em; margin-bottom: 12px; display: block; }
+   109|.entry h2 { font-size: 1.4em; margin-bottom: 8px; font-weight: 600; }
+   110|.entry .desc { color: var(--text-light); font-size: 0.95em; line-height: 1.6; margin-bottom: 12px; }
+   111|.entry .stats { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+   112|.entry .stats span { background: var(--tag-bg); color: var(--tag-text); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; }
+   113|
+   114|/* ===== Controls (Search + Filter) ===== */
+   115|.controls { padding: 16px 20px; max-width: 900px; margin: 0 auto; position: sticky; top: 0; z-index: 100; background: var(--bg); }
+   116|.search-box {
+   117|  width: 100%; padding: 12px 16px; border-radius: 12px;
+   118|  border: 1px solid var(--border); background: var(--card-bg);
+   119|  color: var(--text); font-size: 15px; outline: none;
+   120|}
+   121|.search-box:focus { border-color: #3498db; box-shadow: 0 0 0 3px rgba(52,152,219,.15); }
+   122|.filter-btns { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+   123|.filter-btn {
+   124|  padding: 6px 16px; border-radius: 8px; border: 1px solid var(--border);
+   125|  background: var(--card-bg); color: var(--text-light); cursor: pointer; font-size: 13px;
+   126|  transition: all 0.2s;
+   127|}
+   128|.filter-btn.active { background: #3498db; color: #fff; border-color: #3498db; }
+   129|.filter-btn:hover:not(.active) { background: var(--hover); }
+   130|
+   131|/* ===== Chapter/Section Cards ===== */
+   132|.chapter-card { margin-bottom: 20px; }
+   133|.chapter-header {
+   134|  background: var(--card-bg); border-radius: 12px; padding: 16px 20px;
+   135|  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+   136|  box-shadow: 0 2px 8px var(--shadow); border: 1px solid var(--border);
+   137|  transition: all 0.2s;
+   138|}
+   139|.chapter-header:hover { box-shadow: 0 4px 16px var(--shadow-hover); }
+   140|.chapter-header .ch-title { font-size: 1.15em; font-weight: 600; }
+   141|.chapter-header .ch-arrow { transition: transform 0.2s; color: var(--text-light); }
+   142|.chapter-card.open .ch-arrow { transform: rotate(90deg); }
+   143|.chapter-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+   144|.chapter-card.open .chapter-body { max-height: 200000px; }
+   145|
+   146|.section-card {
+   147|  background: var(--card-bg); border-radius: 10px; margin: 12px 0;
+   148|  border: 1px solid var(--border); overflow: hidden;
+   149|}
+   150|.section-header {
+   151|  padding: 14px 18px; cursor: pointer; display: flex;
+   152|  justify-content: space-between; align-items: center;
+   153|  border-bottom: 1px solid var(--border);
+   154|}
+   155|.section-header:hover { background: var(--hover); }
+   156|.section-header .sec-title { font-weight: 600; font-size: 1em; }
+   157|.section-header .sec-arrow { transition: transform 0.2s; color: var(--text-light); }
+   158|.section-card.open .sec-arrow { transform: rotate(90deg); }
+   159|.section-body { display: none; padding: 16px 18px; }
+   160|.section-card.open .section-body { display: block; }
+   161|
+   162|/* ===== Content Blocks ===== */
+   163|.content-block { margin-bottom: 16px; }
+   164|.content-block h4 { color: var(--primary); margin-bottom: 8px; font-size: 0.95em; }
+   165|.content-block p, .content-block li { line-height: 1.8; color: var(--text); }
+   166|.formula-box {
+   167|  background: var(--hover); border-left: 4px solid #3498db;
+   168|  padding: 12px 16px; border-radius: 6px; margin: 8px 0;
+   169|  font-family: "Courier New", monospace; font-size: 0.95em;
+   170|}
+   171|.tip-box {
+   172|  background: var(--primary-light); border-left: 4px solid var(--primary);
+   173|  padding: 12px 16px; border-radius: 6px; margin: 8px 0;
+   174|  font-size: 0.9em;
+   175|}
+   176|
+   177|/* ===== Question Blocks ===== */
+   178|.q-block {
+   179|  background: var(--card-bg); border: 1px solid var(--border);
+   180|  border-radius: 10px; padding: 16px; margin-bottom: 12px;
+   181|}
+   182|.q-text { font-weight: 500; margin-bottom: 12px; line-height: 1.6; }
+   183|.opts { display: flex; flex-direction: column; gap: 8px; }
+   184|.opt-btn {
+   185|  padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
+   186|  background: var(--card-bg); color: var(--text); cursor: pointer;
+   187|  text-align: left; transition: all 0.2s; font-size: 0.95em;
+   188|}
+   189|.opt-btn:hover:not(.disabled) { background: var(--hover); border-color: #3498db; }
+   190|.opt-btn.selected { background: rgba(52,152,219,0.15); color: #3498db; border-color: #3498db; }
+   191|.opt-btn.correct { background: var(--success-bg) !important; color: var(--success) !important; border-color: var(--success) !important; }
+   192|.opt-btn.wrong { background: var(--wrong-bg) !important; color: var(--wrong) !important; border-color: var(--wrong) !important; }
+   193|.opt-btn.disabled { cursor: default; opacity: 0.7; }
+   194|
+   195|.show-ans-btn {
+   196|  background: var(--primary); color: #fff; border: none;
+   197|  padding: 6px 16px; border-radius: 8px; font-size: 0.85em;
+   198|  cursor: pointer; margin-top: 10px; transition: all 0.2s;
+   199|}
+   200|.show-ans-btn:hover { opacity: 0.85; }
+   201|
+   202|.explanation {
+   203|  border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px;
+   204|  display: none; flex-wrap: wrap; gap: 8px; align-items: center;
+   205|  font-size: 0.9em; color: var(--text-light);
+   206|}
+   207|.explanation.show { display: flex; }
+   208|
+   209|/* ===== Stats Bar ===== */
+   210|.stats-bar {
+   211|  display: flex; gap: 20px; justify-content: center; padding: 12px;
+   212|  background: var(--card-bg); border-radius: 10px; margin-bottom: 16px;
+   213|  box-shadow: 0 2px 8px var(--shadow);
+   214|}
+   215|.stat-item { text-align: center; }
+   216|.stat-item .stat-label { font-size: 0.8em; color: var(--text-light); }
+   217|.stat-item .stat-val { font-size: 1.3em; font-weight: 700; color: var(--primary); }
+   218|
+   219|/* ===== Back to Top ===== */
+   220|.back-top {
+   221|  position: fixed; right: 20px; bottom: 24px;
+   222|  width: 44px; height: 44px; border-radius: 50%;
+   223|  border: none; background: var(--back-top-bg); color: #fff;
+   224|  font-size: 20px; cursor: pointer; opacity: 0;
+   225|  transition: opacity 0.3s; box-shadow: 0 2px 12px rgba(0,0,0,.3);
+   226|  z-index: 999;
+   227|}
+   228|
+   229|/* ===== Footer ===== */
+   230|.footer { text-align: center; padding: 20px; color: var(--text-light); font-size: 0.85em; }
+   231|
+   232|/* ===== Responsive ===== */
+   233|@media(max-width: 600px) {
+   234|  .header h1 { font-size: 1.4em; }
+   235|  .container { padding: 20px 12px; }
+   236|  .entry { padding: 20px; }
+   237|  .theme-btn { right: 12px; padding: 4px 8px; font-size: 14px; }
+   238|  .back-link { left: 12px; padding: 4px 8px; font-size: 12px; }
+   239|  .back-top { right: 12px; bottom: 16px; width: 38px; height: 38px; font-size: 18px; }
+   240|}
+   241|</style>
+   242|</head>
+   243|<body>
+   244|<div class="header">
+   245|<a class="back-link" href="index.html">← 返回</a>
+   246|<button class="theme-btn">🌙 主题</button>
+   247|<h1>🎯 考前背诵</h1>
+   248|<p>核心公式 · 易错提醒 · 快速回顾</p>
+   249|</div>
+   250|<div class="container">
+   251|<div style="text-align:center;margin-bottom:16px;font-size:0.9em;color:var(--text-light)">
+   252|共 44 个考点
+   253|<button onclick="expandAll()" style="margin-left:12px;padding:4px 12px;border-radius:6px;border:1px solid var(--border);background:var(--card-bg);color:var(--text);cursor:pointer">▼ 全部展开</button>
+   254|<button onclick="collapseAll()" style="margin-left:8px;padding:4px 12px;border-radius:6px;border:1px solid var(--border);background:var(--card-bg);color:var(--text);cursor:pointer">▲ 全部收起</button>
+   255|</div>
+   256|
+   257|<div class="section-card">
+   258|<div class="section-header" onclick="toggleSection(this)">
+   259|<span class="sec-title">十五五规划关于教育的论述</span>
+   260|<span class="sec-arrow">▶</span>
+   261|</div>
+   262|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误观点 → ✅ 正确理解（学术共识）</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 十五五教育规划是一个独立文件 → ✅ × 它是&quot;教育科技人才一体化&quot;框架下的组成部分，不可脱离科技和人才政策单独理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育强国=提高升学率和国际排名 → ✅ × 教育强国是系统性概念，包括质量、公平、效率、创新贡献、文化引领等多维度</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 十五五与十四五教育政策的本质相同 → ✅ × 十五五是&quot;建成&quot;教育强国的决胜期，从蓝图建设转为目标实现，政策力度和执行要求显著提升</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育现代化就是教育数字化 → ✅ × 教育现代化涵盖观念、制度、内容、方法、治理的整体现代化，数字化仅为路径之一</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育投入越多则教育越强 → ✅ × 教育投入是必要条件而非充分条件，投入效率、制度质量、师资水平同样关键</div></div>
+   263|</div>
+   264|<div class="section-card">
+   265|<div class="section-header" onclick="toggleSection(this)">
+   266|<span class="sec-title">十四五期间教育领域的成果</span>
+   267|<span class="sec-arrow">▶</span>
+   268|</div>
+   269|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误观点 → ✅ 正确理解（学术共识）</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 十四五教育成果是靠大量投入实现的 → ✅ × 政策的系统设计和制度改革是更核心的动力。在经费占比基本持平的情况下，多项指标显著提升</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ PISA成绩代表中国教育的真实水平 → ✅ × PISA样本仅限于京沪苏浙，其人均GDP为全国2-3倍，不能代表中国教育整体水平</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 双减政策解决了教育内卷问题 → ✅ × 双减压减了显性培训，但焦虑的结构性根源——优质教育资源稀缺与升学竞争——未根本改变</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 高等教育毛入学率越高越好 → ✅ × 普及化后需警惕学历通胀、教育过度、就业结构性不匹配等衍生问题</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育公平问题已基本解决 → ✅ × 城乡、区域、阶层差距依然显著。教育质量公平（而不是入学机会公平）的问题更为突出</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 十四五的&quot;双一流&quot;建设成效显著 → ✅ × 需警惕&quot;双一流&quot;建设中的马太效应——资源向头部高校集中可能加剧高校之间的阶层固化</div></div>
+   270|</div>
+   271|<div class="section-card">
+   272|<div class="section-header" onclick="toggleSection(this)">
+   273|<span class="sec-title">重要会议专题</span>
+   274|<span class="sec-arrow">▶</span>
+   275|</div>
+   276|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误观点 → ✅ 正确理解（学术共识）</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ &quot;九个坚持&quot;是全国教育大会的全部内容 → ✅ × 九个坚持是核心框架而非全部。大会还涉及美育（强调以美育人）、劳动教育（补短板）、家庭教育（协同育人）等专项部署</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 全国教育大会定期召开 → ✅ × 全国教育大会并非固定周期会议，通常在重大政策转折时召开。1985-2010年平均每8年一次，但2018-2024间隔缩短至6年，反映教育改革的紧迫性</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ &quot;九个坚持&quot;只是政治话语没有学术研究价值 → ✅ × 九个坚持可以被教育学、政治学、语言学（话语分析）、公共管理学（政策执行）等多学科进行学术研究</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ &quot;立德树人&quot;就是德育的同义替换 → ✅ × 立德树人的理论内涵比德育更丰富，是&quot;德&quot;与&quot;人&quot;的统一，涉及价值引领、人格培育、社会责任感的全人教育理念</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 新时代教育是对过去的推倒重来 → ✅ × 新时代教育是对改革开放以来教育经验的继承和发展，是在已有成绩基础上的深化和提升，并非另起炉灶</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育根本问题没有学术深度 → ✅ × 教育根本问题涉及哲学（教育目的论）、政治学（公民教育）、社会学（教育与社会再生产）等多个理论领域，是教育学研究的基础性问题</div></div>
+   277|</div>
+   278|<div class="section-card">
+   279|<div class="section-header" onclick="toggleSection(this)">
+   280|<span class="sec-title">从科学教育到科技教育</span>
+   281|<span class="sec-arrow">▶</span>
+   282|</div>
+   283|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 科学教育=科技教育 → ✅ 科学教育以&quot;认识自然&quot;为核心，科技教育以&quot;改造世界&quot;为核心，前者是后者的必要但不充分条件</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ STEM教育是美国的，中国不需要 → ✅ STEM教育理念具有跨文化适用性，关键是根据中国教育实际进行本土化改造</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 科技教育就是多上科学课 → ✅ 科技教育需要科学、数学、工程、技术等多学科的交叉整合，而非单一学科的加强</div></div>
+   284|</div>
+   285|<div class="section-card">
+   286|<div class="section-header" onclick="toggleSection(this)">
+   287|<span class="sec-title">人工智能</span>
+   288|<span class="sec-arrow">▶</span>
+   289|</div>
+   290|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ AI教育=编程教育 → ✅ AI教育包括AI原理认知、AI应用体验、AI伦理思考等多维度，编程仅是技术维度之一</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 人工智能=机器学习=深度学习 → ✅ 三者为包含关系：AI⊃ML⊃DL。机器学习是AI的子集，深度学习是机器学习的子集</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 有了AI就不需要教师了 → ✅ 教育不仅是知识传递，更是价值引领、人格养成和情感互动——这些是AI无法替代的</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ AI能彻底解决个性化教学问题 → ✅ 个性化教学需要对学生认知、情感、社会性等多维度的全面理解，当前AI只能解决部分认知维度</div></div>
+   291|</div>
+   292|<div class="section-card">
+   293|<div class="section-header" onclick="toggleSection(this)">
+   294|<span class="sec-title">人工智能教育</span>
+   295|<span class="sec-arrow">▶</span>
+   296|</div>
+   297|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ AI教育=在信息技术课上教AI → ✅ AI教育应跨学科融入，如AI+艺术、AI+社会科学、AI+语言等多个领域</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 编程教育=AI教育 → ✅ 编程是AI教育的技术基础，但AI教育的内容远不止编程——还包括AI原理、应用、伦理等</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 只有好学生才能学AI → ✅ AI素养教育面向全体学生，AI技术教育面向有兴趣的学生，AI专业教育面向有志于从业的学生</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ AI教育的目标是培养AI工程师 → ✅ AI素养教育的核心目标是培养AI时代的合格公民——理解AI、善用AI、审思AI</div></div>
+   298|</div>
+   299|<div class="section-card">
+   300|<div class="section-header" onclick="toggleSection(this)">
+   301|<span class="sec-title">教师生成式人工智能应用</span>
+   302|<span class="sec-arrow">▶</span>
+   303|</div>
+   304|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ AI应用能力是技术问题 → ✅ 教师AI应用的实质是教学设计问题——在什么场景、以什么方式、为什么目的使用AI需要教学专业判断</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 使用AI备课是在抄袭 → ✅ AI生成的内容需要教师结合学情进行专业判断和二次加工，类似于参考教案的价值</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ AI能完全替代教师工作 → ✅ GenAI是教师的&quot;认知伴侣&quot;（Cognitive Companion），协作而非替代的关系</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 所有教师都应该立即使用AI → ✅ 教师AI应用需要分阶段推进——从认知了解→尝试使用→深度整合→创新重塑</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 年轻教师自然比老教师会用AI → ✅ 研究表明，技术熟悉度并不等于AI教学应用能力，教学设计经验同样重要</div></div>
+   305|</div>
+   306|<div class="section-card">
+   307|<div class="section-header" onclick="toggleSection(this)">
+   308|<span class="sec-title">教育数字化和教育信息化</span>
+   309|<span class="sec-arrow">▶</span>
+   310|</div>
+   311|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育数字化=买设备建网络 → ✅ 数字化是&quot;应用-数据-决策&quot;的系统性变革，关键从&quot;建&quot;转向&quot;用&quot;转向&quot;治&quot;</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育信息化和数字化是一回事 → ✅ 信息化是数字化的基础和前提，数字化是信息化的深化和质变</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 数字化将完全取代传统教学 → ✅ 数字化是&quot;增强&quot;而非&quot;取代&quot;——线上与线下融合的混合式教学可能是最佳模式</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 数字化评价比传统评价更客观 → ✅ 数据本身不是客观的——算法偏见、数据质量、解释框架都会影响评价结果</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 智慧教育=教育数字化 → ✅ 智慧教育是教育数字化的目标和高级阶段，还包括智慧管理、智慧环境、智慧评价等</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 数字化建设投入越大效果越好 → ✅ 数字化效果取决于教师数字素养、教学法创新和组织变革，而非单纯投入</div></div>
+   312|</div>
+   313|<div class="section-card">
+   314|<div class="section-header" onclick="toggleSection(this)">
+   315|<span class="sec-title">教育的三大属性六大特质</span>
+   316|<span class="sec-arrow">▶</span>
+   317|</div>
+   318|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 政治属性就是意识形态灌输 → ✅ 教育的政治属性包含但不限于意识形态教育，还包括培养什么人的根本方向和教育的制度安排</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 战略属性只是地位重要 → ✅ 战略属性要求教育适度超前发展，而不仅是&quot;重要&quot;的地位表述</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 民生属性=教育免费 → ✅ 教育民生涵盖质量、公平、获得感等更广泛的维度</div></div>
+   319|</div>
+   320|<div class="section-card">
+   321|<div class="section-header" onclick="toggleSection(this)">
+   322|<span class="sec-title">教育内卷</span>
+   323|<span class="sec-arrow">▶</span>
+   324|</div>
+   325|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育内卷=努力学习 → ✅ 内卷是&quot;无效的内耗型努力&quot;——是高付出低回报的零和博弈而非健康的努力</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 双减=减轻所有负担 → ✅ 双减指的是减轻&quot;不必要的过重负担&quot;，质量要求并未降低</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 内卷只是中国的问题 → ✅ 日本、韩国等东亚国家同样面临严重的教育内卷问题，这是东亚教育模式的普遍困境</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 禁止培训就解决了内卷 → ✅ 禁止培训只是&quot;治标&quot;，评价体系改革和优质资源扩容才是&quot;治本&quot;</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 内卷反正大家都一样 → ✅ 内卷对弱势群体的伤害更大——高收入家庭有更多应对策略</div></div>
+   326|</div>
+   327|<div class="section-card">
+   328|<div class="section-header" onclick="toggleSection(this)">
+   329|<span class="sec-title">家庭教育</span>
+   330|<span class="sec-arrow">▶</span>
+   331|</div>
+   332|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 家庭教育=父母辅导作业 → ✅ 家庭教育是更广义的品德养成、习惯培养和人格塑造</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 家庭教育法是管家长的 → ✅ 家庭教育促进法重在&quot;指导&quot;&quot;支持&quot;&quot;服务&quot;，非惩罚性立法</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 好家长自然有好孩子 → ✅ 家庭教育需要学习——家庭教育指导服务是提升家长教育能力的专业支持</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 学校教育可以替代家庭教育 → ✅ 学校教育和家庭教育是互补而非替代的关系，家庭在品德和情感教育方面具有独特优势</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 家庭教育是妈妈的事 → ✅ 家庭教育是父母双方的共同责任，《家庭教育促进法》明确使用&quot;父母&quot;和&quot;监护人&quot;的表述</div></div>
+   333|</div>
+   334|<div class="section-card">
+   335|<div class="section-header" onclick="toggleSection(this)">
+   336|<span class="sec-title">人口结构调整和教育</span>
+   337|<span class="sec-arrow">▶</span>
+   338|</div>
+   339|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 人少了教育就好办 → ✅ 学龄人口减少的&quot;红利&quot;需要通过提高生均投入、推进小班化来兑现，不是自动实现的</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 人口下降对教育只有好处 → ✅ 人口下降可能导致教育资源结构性闲置、教师富余、学校关闭等新问题</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教学质量随人口增长变化 → ✅ 人口变化影响教育资源配置方式，与教学质量无直接因果关系</div></div>
+   340|</div>
+   341|<div class="section-card">
+   342|<div class="section-header" onclick="toggleSection(this)">
+   343|<span class="sec-title">中小学教师减负</span>
+   344|<span class="sec-arrow">▶</span>
+   345|</div>
+   346|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教师减负=减少教学工作量 → ✅ 减负减的是&quot;非教学事务&quot;，核心教学工作的质量和标准不能降低</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 减负就是发文件 → ✅ 减负需要建立长效机制——如进校园活动&quot;白名单&quot;制度、检查评比总量控制等</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 减负没有效果 → ✅ 部分地区和学校已取得阶段性成效，如设立&quot;教师减负举报平台&quot;、建立非教学任务初审制度</div></div>
+   347|</div>
+   348|<div class="section-card">
+   349|<div class="section-header" onclick="toggleSection(this)">
+   350|<span class="sec-title">教育家精神和教师队伍建设</span>
+   351|<span class="sec-arrow">▶</span>
+   352|</div>
+   353|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育家精神是给特级教师提的 → ✅ 教育家精神是面向全体教师的职业精神追求，而非仅针对&quot;教育家&quot;群体的高要求</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教师队伍建设=增加教师工资 → ✅ 教师队伍建设是待遇保障、专业发展、精神引领的三位一体</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 师德师风=不出问题 → ✅ 师德师风建设包括正面引领和底线约束两个层面</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育家精神代表对教师的过度要求 → ✅ 教育家精神是&quot;精神引领&quot;而非&quot;硬性考核&quot;，是激励而非加码</div></div>
+   354|</div>
+   355|<div class="section-card">
+   356|<div class="section-header" onclick="toggleSection(this)">
+   357|<span class="sec-title">高等教育国际化</span>
+   358|<span class="sec-arrow">▶</span>
+   359|</div>
+   360|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 国际化=出国留学 → ✅ 包括引进国外优质资源和&quot;在地国际化&quot;的完整过程</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 国际合作越多越好 → ✅ 国际化需有质量保障，避免&quot;野鸡大学&quot;&quot;水项目&quot;等问题</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 国际化会冲击本土教育主权 → ✅ 中国始终坚持&quot;中外合作办学&quot;中的&quot;我主他辅&quot;原则</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 留学生数量是国际化水平的指标 → ✅ 更重要的指标是合作科研、学术影响和人才培养质量</div></div>
+   361|</div>
+   362|<div class="section-card">
+   363|<div class="section-header" onclick="toggleSection(this)">
+   364|<span class="sec-title">县域教育</span>
+   365|<span class="sec-arrow">▶</span>
+   366|</div>
+   367|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 县中塌陷只是质量问题 → ✅ 县中塌陷是城镇化进程中教育资源配置失衡的结构性问题，不仅是质量下滑</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 禁止跨区域招生就能解决问题 → ✅ 禁止跨区域招生是治标之策，优质资源扩容和师资水平提升才是治本之策</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 县中振兴&lt;向城市集中 → ✅ 教育布局调整应因地制宜，不能&quot;一刀切&quot;——人口流出区应优化布局，人口流入区应扩容</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 县中差是因为钱不够 → ✅ 教师流失、管理滞后、治理生态等软性因素可能比经费更关键</div></div>
+   368|</div>
+   369|<div class="section-card">
+   370|<div class="section-header" onclick="toggleSection(this)">
+   371|<span class="sec-title">职业教育教科研</span>
+   372|<span class="sec-arrow">▶</span>
+   373|</div>
+   374|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 职业教育研究=技术培训研究 → ✅ 职业教育研究涵盖技术教育、职业素养、产教融合、工匠精神等广泛领域</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 职业教育不需要高水平研究 → ✅ 职业教育同样需要高水平研究支撑——德国、瑞士等职业教育强国均有强大的研究支撑</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 职业教育和普通教育研究方法一样 → ✅ 职业教育研究更强调在真实工作情境中进行的&quot;行动研究&quot;和&quot;案例研究&quot;</div></div>
+   375|</div>
+   376|<div class="section-card">
+   377|<div class="section-header" onclick="toggleSection(this)">
+   378|<span class="sec-title">中小学日常考试管理</span>
+   379|<span class="sec-arrow">▶</span>
+   380|</div>
+   381|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 不让考试就是降低要求 → ✅ 不让考试≠不评价——课堂提问、作业分析、实践操作等替代性评价方式同样有效</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 考试频次越少越好 → ✅ 零考试同样不可取。考试管理追求的是适量、适度和高质量</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 不排名就不了解学生水平 → ✅ 教师可通过多种形成性评价方式了解学生学业状况，排名不是唯一途径</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>考试管理改革的另一理论基础是教育测量学的核心概念——效度和信度。效度（Validity）指考试是否测量了它声称要测量的内容；信度（Reliability）指考试结果的稳定性和一致性。减少考试频次的政策，实际上是希望通过提高单次考试的质量（效度和信度）来替代频次。但问题在于：日常形成性评价的信度通常低于标准化考试，教师如何保证日常评价的效度和信度是落实考试管理改革的关键难题。此外，考试管理的&quot;过程性评价替代终结性评价&quot;理念，与高考&quot;一考定终身&quot;的现实之间存在根本性矛盾——日常评价在高考录取中的参考价值有限，教师和学校缺乏改革的实质动力。</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>北京某小学实施的&quot;考试管理2.0&quot;方案：取消期中考试，改为&quot;学科素养闯关活动&quot;（语文学科的朗读展示、数学学科的思维挑战、英语学科的情景对话——每一项都设有评价量规）。这一改革取得了积极效果——学生的学习兴趣提升，教师能够更全面地了解学情。但也暴露出一些问题：评价标准的主观性、评价结果的&quot;含金量&quot;不如考试成绩、家长对评价结果的可信度存在质疑。这一案例说明，考试管理改革不仅是政策执行问题，更是评价文化转型问题。</div></div>
+   382|</div>
+   383|<div class="section-card">
+   384|<div class="section-header" onclick="toggleSection(this)">
+   385|<span class="sec-title">智慧教育</span>
+   386|<span class="sec-arrow">▶</span>
+   387|</div>
+   388|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 智慧教育=智慧课堂 → ✅ 智慧教育包括智慧教学、智慧管理、智慧评价、智慧环境等系统化工程</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 有钱就能建成智慧校园 → ✅ 智慧教育建设的根本困难不在技术而在理念——师生的数字化素养和教学法变革</div></div>
+   389|</div>
+   390|<div class="section-card">
+   391|<div class="section-header" onclick="toggleSection(this)">
+   392|<span class="sec-title">中华民族共同体意识教育</span>
+   393|<span class="sec-arrow">▶</span>
+   394|</div>
+   395|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 共同体意识=消解民族特点 → ✅ 共同体意识教育尊重和保护各民族文化特色，在&quot;一体&quot;中保持&quot;多元&quot;</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 只在民族地区进行 → ✅ 中华民族共同体意识教育面向全国所有学校，不分民族区域</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 只讲团结不讲差异 → ✅ 强调的是&quot;多元中的一体&quot;，尊重差异是前提，凝聚共识是目标</div></div>
+   396|</div>
+   397|<div class="section-card">
+   398|<div class="section-header" onclick="toggleSection(this)">
+   399|<span class="sec-title">教育强国</span>
+   400|<span class="sec-arrow">▶</span>
+   401|</div>
+   402|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育强国=教育大国 → ✅ 教育大国强调规模（学校数、学生数等），教育强国强调质量、公平、创新贡献等综合指标</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育强国是纯量的概念 → ✅ 教育强国的核心是&quot;质的飞跃&quot;——从教育大国向教育强国的跨越是质变而非量变</div></div>
+   403|</div>
+   404|<div class="section-card">
+   405|<div class="section-header" onclick="toggleSection(this)">
+   406|<span class="sec-title">新质生产力和教育</span>
+   407|<span class="sec-arrow">▶</span>
+   408|</div>
+   409|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 新质生产力=科技创新 → ✅ 科技创新是核心驱动力，但新质生产力还包括生产要素的优化组合和产业转型升级</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 新质生产力只与理工科有关 → ✅ 文科教育同样重要——创新文化、制度设计、管理创新都是新质生产力的组成部分</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教育改革为新质生产力服务会窄化教育目标 → ✅ 新质生产力导向的教育改革与人的全面发展目标具有内在一致性，并非对立</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 新质生产力是对传统生产力的全盘否定 → ✅ 新质生产力是在传统生产力基础上的质的跃升，不是割裂替代，而是辩证发展</div></div>
+   410|</div>
+   411|<div class="section-card">
+   412|<div class="section-header" onclick="toggleSection(this)">
+   413|<span class="sec-title">《中华人民共和国学前教育法》</span>
+   414|<span class="sec-arrow">▶</span>
+   415|</div>
+   416|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 学前教育=幼儿园教育 → ✅ 学前教育包括幼儿园和幼儿园以外的多种形式，如托儿所、社区早教等</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 普惠性=免费教育 → ✅ 普惠性≠免费，而是合理收费+政府补贴，使大多数家庭能负担</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 立法后所有幼儿园都变成公办 → ✅ 法律保障&quot;公办民办并举&quot;，普惠性民办园将继续存在并得到扶持</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 学前教育法解决所有问题 → ✅ 立法确立制度框架，但实施效果取决于配套政策和地方执行力</div></div>
+   417|</div>
+   418|<div class="section-card">
+   419|<div class="section-header" onclick="toggleSection(this)">
+   420|<span class="sec-title">家校社协同育人&quot;教联体&quot;</span>
+   421|<span class="sec-arrow">▶</span>
+   422|</div>
+   423|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 家校社协同=让家长配合学校 → ✅ 协同育人要求学校、家庭、社会三方平等协作，不是单向配合</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教联体=家长委员会 → ✅ 教联体比家委会更全面，涵盖社区、事业单位、社会组织等多方主体</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 教联体就是组织活动 → ✅ 教联体的本质是育人机制创新，不是活动叠加，核心在制度层面</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 社会资源只包括校外培训机构 → ✅ 社会资源包括博物馆、图书馆、科技馆、社区服务中心、企事业单位等</div></div>
+   424|</div>
+   425|<div class="section-card">
+   426|<div class="section-header" onclick="toggleSection(this)">
+   427|<span class="sec-title">义务教育课程方案</span>
+   428|<span class="sec-arrow">▶</span>
+   429|</div>
+   430|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 新课标=新教材 → ✅ 课标是教材编写依据，教材是课标的落实载体——课标改变不等于教材自动改变</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 核心素养=能力培养 → ✅ 核心素养包含&quot;正确价值观+必备品格+关键能力&quot;三个维度，不等于单纯的能力</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 跨学科主题学习=综合实践活动 → ✅ 跨学科主题学习是各学科内部的跨学科学习，综合实践活动是独立课程领域</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 学业质量标准=考试标准 → ✅ 学业质量标准是描述性的学习期待，不是考题范围，核心是诊断和改进功能</div></div>
+   431|</div>
+   432|<div class="section-card">
+   433|<div class="section-header" onclick="toggleSection(this)">
+   434|<span class="sec-title">双减</span>
+   435|<span class="sec-arrow">▶</span>
+   436|</div>
+   437|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 双减=取消补习 → ✅ 双减是治理违规培训，合法合规的素质类培训（体育、艺术、科技）仍可开展</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 双减=降低学习要求 → ✅ 双减减的是无效负担，对学习质量和课堂教学提出了更高要求</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 双减后孩子&quot;没事干&quot; → ✅ 课后服务、社团活动、体育锻炼、劳动实践、阅读等可填补时间</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 双减=一刀切政策 → ✅ 政策允许各地因地制宜，部分城市已开展分层分类的差异化实施</div></div>
+   438|</div>
+   439|<div class="section-card">
+   440|<div class="section-header" onclick="toggleSection(this)">
+   441|<span class="sec-title">大中小学思政一体化</span>
+   442|<span class="sec-arrow">▶</span>
+   443|</div>
+   444|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 一体化=教材统一 → ✅ 一体化是教学目标的系统衔接，不是教材的简单统一</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 小学就教政治理论 → ✅ 小学阶段以情感体验和习惯养成为主，不进行抽象理论教学</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 一体化只是内容调整 → ✅ 一体化涉及课程目标、内容、教学方法、师资培训、评价方式的全系统变革</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 大学不必重复中学内容 → ✅ 大学思政课应在中学基础上深化，不是简单重复，而是螺旋上升</div></div>
+   445|</div>
+   446|<div class="section-card">
+   447|<div class="section-header" onclick="toggleSection(this)">
+   448|<span class="sec-title">劳动教育</span>
+   449|<span class="sec-arrow">▶</span>
+   450|</div>
+   451|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 劳动教育=干活/打扫卫生 → ✅ 劳动教育是系统课程，涵盖日常生活、生产劳动、服务性劳动三大类别</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 劳动教育挤占学习时间 → ✅ 劳动教育与其他学科教育是互补关系，劳动过程本身就是学习过程</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 劳动教育不需要教师 → ✅ 劳动教育需要专兼职结合的教师队伍和系统的课程设计</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 大学生不需要劳动教育 → ✅ 大学劳动教育侧重专业技能劳动和创新创业实践，是职业素养培养的组成部分</div></div>
+   452|</div>
+   453|<div class="section-card">
+   454|<div class="section-header" onclick="toggleSection(this)">
+   455|<span class="sec-title">美育</span>
+   456|<span class="sec-arrow">▶</span>
+   457|</div>
+   458|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 美育=音乐课+美术课 → ✅ 美育涵盖艺术教育但不等同于艺术教育，还包括自然美、社会美、科技美等</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 美育是副科不重要 → ✅ 美育是&quot;五育&quot;之一，培养人格完整的人不可或缺，不是可有可无的&quot;调味品&quot;</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 美育就是教孩子画画唱歌 → ✅ 美育的核心是审美素养的培养，技能训练只是载体而非目的</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 农村地区条件差没法搞美育 → ✅ 农村有独特的乡土美育资源（自然风光、民间艺术），关键是因地制宜开发</div></div>
+   459|</div>
+   460|<div class="section-card">
+   461|<div class="section-header" onclick="toggleSection(this)">
+   462|<span class="sec-title">德育</span>
+   463|<span class="sec-arrow">▶</span>
+   464|</div>
+   465|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 德育=思想品德课 → ✅ 德育是全过程全方位的育人工作，所有学科都负有德育责任</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 德育就是讲大道理 → ✅ 有效的德育是润物无声的渗透式教育，而非说教</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 德育可量化考核 → ✅ 道德品质具有内在性和复杂性，简单量化可能导致形式主义</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 德育是学校单方面的责任 → ✅ 德育需要学校、家庭、社会三方协同，家庭是道德教育的第一课堂</div></div>
+   466|</div>
+   467|<div class="section-card">
+   468|<div class="section-header" onclick="toggleSection(this)">
+   469|<span class="sec-title">心理健康教育</span>
+   470|<span class="sec-arrow">▶</span>
+   471|</div>
+   472|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 心理健康=没有心理问题 → ✅ 心理健康还包括积极的心理品质，如幸福感、韧性、自我效能感等</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 心理普查就是&quot;找问题学生&quot; → ✅ 心理普查的目的是了解学生整体心理状态和针对性的预防干预</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 心理教师=&quot;心理医生&quot; → ✅ 学校心理教师主要负责预防和轻度的心理辅导，不能替代专业心理治疗</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 心理健康教育是心理老师的事 → ✅ 所有教师都应具有基本的心理健康教育意识和能力</div></div>
+   473|</div>
+   474|<div class="section-card">
+   475|<div class="section-header" onclick="toggleSection(this)">
+   476|<span class="sec-title">五育融合</span>
+   477|<span class="sec-arrow">▶</span>
+   478|</div>
+   479|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 五育融合=五育一起上 → ✅ 融合不是简单叠加，而是有机整合——各育相互渗透、互为目的和手段</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 五育融合消解了各育特色 → ✅ 融合以各育的独立价值为前提，不是消除差异而是强化关联</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 五育融合增加了教师负担 → ✅ 融合需要整合思维而非额外覆盖，长期看可减少重复劳动</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 五育融合=取消分科教学 → ✅ 五育融合主要改进教学设计和活动组织，不影响学科知识体系</div></div>
+   480|</div>
+   481|<div class="section-card">
+   482|<div class="section-header" onclick="toggleSection(this)">
+   483|<span class="sec-title">立德树人</span>
+   484|<span class="sec-arrow">▶</span>
+   485|</div>
+   486|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 立德树人=加强德育活动 → ✅ 立德树人是教育根本任务的定位，贯穿于所有教育活动，不限德育活动</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 立德树人是学校德育处的职责 → ✅ 立德树人是全体教育工作者的共同责任</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 立德树人与应试教育矛盾 → ✅ 立德树人是目标定位，不是否定知识学习和考试评价</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 立德树人=传统文化教育 → ✅ 立德树人既是继承传统（儒家德教），也是面向时代（培养时代新人）</div></div>
+   487|</div>
+   488|<div class="section-card">
+   489|<div class="section-header" onclick="toggleSection(this)">
+   490|<span class="sec-title">核心素养</span>
+   491|<span class="sec-arrow">▶</span>
+   492|</div>
+   493|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 核心素养=综合素养 → ✅ 核心素养强调的是&quot;关键少数&quot;的必备品格和关键能力，不是全部素养的罗列</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 核心素养是新课改的噱头 → ✅ 核心素养是对&quot;教育要培养什么样的人&quot;的系统回应，有国际共识和理论深度</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 核心素养等于三维目标 → ✅ 核心素养是对三维目标的整合与提升，更强调整体性和迁移性</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 核心素养只是针对学生 → ✅ 核心素养框架同样指向教师素养提升和学校育人模式的整体变革</div></div>
+   494|</div>
+   495|<div class="section-card">
+   496|<div class="section-header" onclick="toggleSection(this)">
+   497|<span class="sec-title">跨学科主题学习</span>
+   498|<span class="sec-arrow">▶</span>
+   499|</div>
+   500|<div class="section-body"><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 常见错误 → ✅ 正确理解</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 跨学科=多学科拼盘 → ✅ 跨学科是整合&gt;拼盘——不是各科轮流上课，而是围绕一个问题多学科协同解决</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 跨学科主题学习=综合实践活动 → ✅ 跨学科主题学习强调学科整合基础，综合实践活动则以活动体验为主</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 只需10%即可完成任务 → ✅ 10%是最低要求，成熟的项目应逐步扩大跨学科学习的比例</div><div style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="margin-right:8px">💡</span>❌ 跨学科不需要学科基础 → ✅ 跨学科以扎实的单学科知识为基础，学科素养越扎实，跨学科效果越好</div></div>
+   501|
